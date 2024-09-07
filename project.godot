@@ -14,6 +14,10 @@ config/name="dungeoncrawler"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+global="*res://scripts/globalstats.gd"
+
 [input]
 
 Forward={

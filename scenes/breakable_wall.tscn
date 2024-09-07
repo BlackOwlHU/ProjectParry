@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cprghsxm60aor"]
+[gd_scene load_steps=5 format=3 uid="uid://cprghsxm60aor"]
+
+[ext_resource type="Script" path="res://scenes/breakable_wall.gd" id="1_vu3tk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74504"]
 albedo_color = Color(1, 1, 0, 1)
@@ -10,6 +12,7 @@ material = SubResource("StandardMaterial3D_74504")
 points = PackedVector3Array(1.01587, 0.015873, 1.01587, -1.01587, -0.015873, -1.01587, -1.01587, 0.015873, -1.01587, 1.01587, -0.015873, -1.01587, -1.01587, -0.015873, 1.01587, -1.01587, 0.015873, 1.01587, 1.01587, 0.015873, -1.01587, 1.01587, -0.015873, 1.01587)
 
 [node name="Breakable_Wall" type="Area3D" groups=["breakable_wall"]]
+script = ExtResource("1_vu3tk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0)
@@ -24,3 +27,5 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_sc8wr")
+
+[connection signal="area_shape_exited" from="." to="." method="_on_area_shape_exited"]

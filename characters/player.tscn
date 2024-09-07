@@ -184,4 +184,6 @@ libraries = {
 }
 autoplay = "idle"
 
+[connection signal="area_shape_entered" from="CameraController/Camera3D/Right_Arm/Weapon/Hitbox" to="." method="_on_hitbox_area_shape_entered" binds= [0]]
+[connection signal="area_shape_exited" from="CameraController/Camera3D/Right_Arm/Weapon/Hitbox" to="." method="_on_hitbox_area_shape_exited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
