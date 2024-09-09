@@ -1,6 +1,5 @@
 extends CharacterBody3D
-
-signal breakable_wall_damage(value)
+class_name Player
 
 @export var SPEED = 5.0
 @export var JUMP_VELOCITY = 4.5
@@ -12,6 +11,7 @@ signal breakable_wall_damage(value)
 
 @onready var anim_player = $AnimationPlayer
 @onready var weapon_hitbox = $CameraController/Camera3D/Right_Arm/Weapon/Hitbox
+@onready var hitbox_collision = $CameraController/Camera3D/Right_Arm/Weapon/Hitbox/CollisionShape3D
 
 var mouse_input : bool = false
 var _mouse_rotation : Vector3
@@ -27,6 +27,7 @@ func _input(event):
 	if Input.is_action_just_pressed("Attack"):
 		anim_player.play("attack")
 		weapon_hitbox.monitoring = true
+		hitbox_collision.disabled = false
 
 func _unhandled_input(event):
 	mouse_input = event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
@@ -83,18 +84,4 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "attack":
 		anim_player.play("idle")
 		weapon_hitbox.monitoring = false
-
-func _on_hitbox_area_entered(area: Area3D) -> void:
-	#if area.is_in_group("breakable_wall"):
-	#	print("hit")
-		#emit_signal("breakable_wall_damage",global.player_damage)
-		pass
-
-func _on_hitbox_area_shape_entered(area_rid: RID, area: Area3D, area_shape_index: int, local_shape_index: int) -> void:
-	pass
-
-
-func _on_hitbox_area_shape_exited(area_rid: RID, area: Area3D, area_shape_index: int, local_shape_index: int) -> void:
-	if area.is_in_group("breakable_wall"):
-		print("wall_hit")
-		emit_signal("breakable_wall_damage",global.player_damage)
+		hitbox_collision.disabled = true

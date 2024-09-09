@@ -8,11 +8,16 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if wall_health <= 0:
-		print("wall_break")
-		$MeshInstance3D.visible = false
-		$CollisionShape3D2.disabled = true
-		$StaticBody3D/CollisionShape3D.disabled = true
+	pass
 
-func _on_area_shape_exited(area_rid: RID, area: Area3D, area_shape_index: int, local_shape_index: int) -> void:
-	wall_health -= global.player_damage
+
+func _on_area_entered(area: Area3D) -> void:
+	print("wall_health:")
+	print(wall_health)
+	if area.owner is Player:
+		wall_health -= global.player_damage
+		if wall_health <= 0:
+			print("wall_break")
+			$MeshInstance3D.visible = false
+			$CollisionShape3D2.disabled = true
+			$StaticBody3D/CollisionShape3D.disabled = true
