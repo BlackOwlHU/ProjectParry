@@ -21,3 +21,5 @@ func _on_area_entered(area: Area3D) -> void:
 			$MeshInstance3D.visible = false
 			$CollisionShape3D2.disabled = true
 			$StaticBody3D/CollisionShape3D.disabled = true
+			$StaticBody3D.collision_layer = 0
+			$StaticBody3D.collision_mask = 0
