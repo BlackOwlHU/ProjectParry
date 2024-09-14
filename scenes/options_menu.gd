@@ -1,6 +1,6 @@
 extends Control
 
-@onready var ResOptionButton = $Resolution/HBoxContainer/OptionButton
+@onready var ResOptionButton = $CanvasLayer/HBoxContainer2/HBoxContainer/OptionButton
 
 var Resolution: Dictionary = {"800x600":Vector2(800,600),
 								"1280x720":Vector2(1280,720),
