@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://dft7wol7r165i"]
+
+[ext_resource type="Script" path="res://scripts/basic_sword_enemy.gd" id="1_s758i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f2d5s"]
+albedo_color = Color(1, 0.151344, 0.108333, 1)
+metallic = 0.05
+roughness = 0.5
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7d5yk"]
+material = SubResource("StandardMaterial3D_f2d5s")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ulxrb"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_aafqo"]
+size = Vector3(0.1, 1.75, 0.1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8ugw7"]
+points = PackedVector3Array(0.0631466, 0.882543, 0.0631466, -0.0575431, -0.882543, -0.0575431, -0.0575431, -0.882543, 0.0631466, -0.0575431, 0.882543, -0.0575431, 0.0631466, -0.882543, -0.0575431, 0.0631466, -0.882543, 0.0631466, -0.0575431, 0.882543, 0.0631466, 0.0631466, 0.882543, -0.0575431)
+
+[node name="Basic_Sword_Enemy" type="CharacterBody3D" groups=["enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_s758i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_7d5yk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ulxrb")
+
+[node name="Right_Arm" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Right_Arm"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.597335, 1.01587, -0.424653)
+mesh = SubResource("BoxMesh_aafqo")
+
+[node name="Area3D" type="Area3D" parent="Right_Arm/MeshInstance3D"]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Right_Arm/MeshInstance3D/Area3D"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_8ugw7")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
