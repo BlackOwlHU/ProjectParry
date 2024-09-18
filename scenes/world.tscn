@@ -63,6 +63,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, -12)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_pvwil")
+navigation_layers = 65535
 
 [node name="Enviroment" type="CSGCombiner3D" parent="NavigationRegion3D"]
 
