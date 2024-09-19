@@ -144,7 +144,7 @@ _data = {
 "idle": SubResource("Animation_k08vk")
 }
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER") groups=["Player"]]
 script = ExtResource("1_ndm3o")
 CAMERA_CONTROLLER = NodePath("CameraController/Camera3D")
 

@@ -24,6 +24,10 @@ global="*res://scripts/globalstats.gd"
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
+[global_group]
+
+Player=""
+
 [input]
 
 Forward={
