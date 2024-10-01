@@ -21,6 +21,12 @@ var _player_rotation : Vector3
 var _camera_rotation : Vector3
 
 func _input(event):
+	if Input.is_action_pressed("Sprint"):
+		SPEED = 10
+	
+	if Input.is_action_just_released("Sprint"):
+		SPEED = 5.0
+	
 	if event.is_action_pressed("Exit"):
 		get_tree().quit()
 	
