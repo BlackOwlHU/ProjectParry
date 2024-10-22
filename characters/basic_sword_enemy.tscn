@@ -22,6 +22,9 @@ points = PackedVector3Array(0.0631466, 0.882543, 0.0631466, -0.0575431, -0.88254
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_s758i")
 
+[node name="Position" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_7d5yk")
 
@@ -41,7 +44,8 @@ transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_8ugw7")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_height_offset = 0.1
+path_desired_distance = 100.0
+path_max_distance = 100.01
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
