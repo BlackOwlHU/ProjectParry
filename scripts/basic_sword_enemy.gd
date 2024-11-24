@@ -1,5 +1,5 @@
 extends CharacterBody3D
-#hours i have spend to fix this: 9
+#hours i have spend to fix this: 11
 @onready var ai = true
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @export var SPEED = 5.0
