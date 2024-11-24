@@ -44,8 +44,6 @@ transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_8ugw7")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_desired_distance = 100.0
-path_max_distance = 100.01
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
