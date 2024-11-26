@@ -7,11 +7,11 @@ extends CharacterBody3D
 @onready var timer = $Timer
 @onready var pos = $Position
 @onready var BodyCollison = $BodyCollison
-@onready var DamageRegister = $MeshInstance3D/Area3D/DamageRegister
-@onready var SwordCollison = $Right_Arm/MeshInstance3D/Area3D/SwordCollison
+@onready var DamageRegister = $Area3D/DamageRegister
+@onready var SwordCollison = $Right_Arm/Sword/Area3D/SwordCollison
 @onready var EnemyBody = $EnemyBody
 @onready var Sword = $Right_Arm/Sword
-@onready var Hitbox = $EnemyBody/Area3D
+@onready var Hitbox = $Area3D
 
 var enemy_health = 100
 
@@ -64,9 +64,13 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 			print("enemy_killed")
 			EnemyBody.visible = false
 			Sword.visible = false
-			BodyCollison.disabled = true
-			#Hitbox.call_deferred("set_disable_mode", false)
-			#DamageRegister.call_deferred("set_disabled", true)
-			#SwordCollison.call_deferred("set_disabled", true)
+			BodyCollison.set_deferred("disabled", true)
+			DamageRegister.set_deferred("disabled", true)
+			SwordCollison.set_deferred("disabled", true)
+			Hitbox.set_deferred("monitoring", false)
+			#BodyCollison.disabled = true
+			#DamageRegister.disabled = true
+			#SwordCollison.disabled = true
+			#Hitbox.monitoring = false
 			#$StaticBody3D.collision_layer = 0
 			#$StaticBody3D.collision_mask = 0
