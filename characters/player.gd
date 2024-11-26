@@ -34,6 +34,10 @@ func _input(event):
 		anim_player.play("attack")
 		weapon_hitbox.monitoring = true
 		hitbox_collision.disabled = false
+	
+	if Input.is_action_pressed("Pause"):
+		if Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _unhandled_input(event):
 	mouse_input = event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED

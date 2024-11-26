@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/basic_sword_enemy.gd" id="1_s758i"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ulxrb"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f2d5s"]
 albedo_color = Color(1, 0.151344, 0.108333, 1)
 metallic = 0.05
@@ -9,8 +11,6 @@ roughness = 0.5
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7d5yk"]
 material = SubResource("StandardMaterial3D_f2d5s")
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ulxrb"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_aafqo"]
 size = Vector3(0.1, 1.75, 0.1)
@@ -25,10 +25,15 @@ script = ExtResource("1_s758i")
 [node name="Position" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ulxrb")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_7d5yk")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+
+[node name="DamageRegister" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
 shape = SubResource("CapsuleShape3D_ulxrb")
 
 [node name="Right_Arm" type="Node3D" parent="."]
@@ -49,5 +54,6 @@ shape = SubResource("ConvexPolygonShape3D_8ugw7")
 wait_time = 0.1
 autostart = true
 
+[connection signal="area_entered" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

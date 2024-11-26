@@ -48,19 +48,36 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HBoxContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_top = 336.0
+offset_right = 1152.0
+offset_bottom = 583.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
 custom_minimum_size = Vector2(550, 0)
 layout_mode = 2
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer2/HBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "Resolution:"
 
-[node name="OptionButton" type="OptionButton" parent="CanvasLayer/HBoxContainer2/HBoxContainer"]
+[node name="OptionButton" type="OptionButton" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Fullscreen:"
+
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
-[connection signal="item_selected" from="CanvasLayer/HBoxContainer2/HBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="item_selected" from="CanvasLayer/VBoxContainer/HBoxContainer2/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="toggled" from="CanvasLayer/VBoxContainer/HBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
