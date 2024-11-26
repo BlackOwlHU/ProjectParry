@@ -6,6 +6,12 @@ extends CharacterBody3D
 @onready var player = get_tree().get_first_node_in_group("Player")
 @onready var timer = $Timer
 @onready var pos = $Position
+@onready var BodyCollison = $BodyCollison
+@onready var DamageRegister = $MeshInstance3D/Area3D/DamageRegister
+@onready var SwordCollison = $Right_Arm/MeshInstance3D/Area3D/SwordCollison
+@onready var EnemyBody = $EnemyBody
+@onready var Sword = $Right_Arm/Sword
+@onready var Hitbox = $EnemyBody/Area3D
 
 var enemy_health = 100
 
@@ -42,11 +48,10 @@ func _on_timer_timeout() -> void:
 	#print("refresh")
 	if ai:
 		update_target_location()
-	timer.start()
+		timer.start()
 
 func _on_navigation_agent_3d_target_reached() -> void:
 	print("reached")
-
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
 	if enemy_health > 0:
@@ -57,9 +62,11 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 		if enemy_health <= 0:
 			ai = false
 			print("enemy_killed")
-			$MeshInstance3D.visible = false
-			$Right_Arm/MeshInstance3D/Area3D/CollisionShape3D2.disabled = true
-			$CollisionShape3D.disabled = true
-			$MeshInstance3D/Area3D/DamageRegister.disabled = true
+			EnemyBody.visible = false
+			Sword.visible = false
+			BodyCollison.disabled = true
+			#Hitbox.call_deferred("set_disable_mode", false)
+			#DamageRegister.call_deferred("set_disabled", true)
+			#SwordCollison.call_deferred("set_disabled", true)
 			#$StaticBody3D.collision_layer = 0
 			#$StaticBody3D.collision_mask = 0

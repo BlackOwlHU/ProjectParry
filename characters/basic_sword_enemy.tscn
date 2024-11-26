@@ -25,26 +25,26 @@ script = ExtResource("1_s758i")
 [node name="Position" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="BodyCollison" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ulxrb")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="EnemyBody" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_7d5yk")
 
-[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+[node name="Area3D" type="Area3D" parent="EnemyBody"]
 
-[node name="DamageRegister" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+[node name="DamageRegister" type="CollisionShape3D" parent="EnemyBody/Area3D"]
 shape = SubResource("CapsuleShape3D_ulxrb")
 
 [node name="Right_Arm" type="Node3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Right_Arm"]
+[node name="Sword" type="MeshInstance3D" parent="Right_Arm"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.597335, 1.01587, -0.424653)
 mesh = SubResource("BoxMesh_aafqo")
 
-[node name="Area3D" type="Area3D" parent="Right_Arm/MeshInstance3D"]
+[node name="Area3D" type="Area3D" parent="Right_Arm/Sword"]
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Right_Arm/MeshInstance3D/Area3D"]
+[node name="SwordCollison" type="CollisionShape3D" parent="Right_Arm/Sword/Area3D"]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_8ugw7")
 
@@ -54,6 +54,6 @@ shape = SubResource("ConvexPolygonShape3D_8ugw7")
 wait_time = 0.1
 autostart = true
 
-[connection signal="area_entered" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_entered" from="EnemyBody/Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
