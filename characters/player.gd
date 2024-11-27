@@ -35,6 +35,10 @@ func _input(event):
 		weapon_hitbox.monitoring = true
 		hitbox_collision.disabled = false
 	
+	if Input.is_action_just_pressed("Parry-Block"):
+		anim_player.play("parry")
+		weapon_hitbox.monitoring = true
+	
 	if Input.is_action_pressed("Pause"):
 		if Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -92,6 +96,10 @@ func _physics_process(delta: float) -> void:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "attack":
+		anim_player.play("idle")
+		weapon_hitbox.monitoring = false
+		hitbox_collision.disabled = true
+	if anim_name == "parry":
 		anim_player.play("idle")
 		weapon_hitbox.monitoring = false
 		hitbox_collision.disabled = true

@@ -1,5 +1,7 @@
 extends CharacterBody3D
 #hours i have spend to fix this: 11
+@export var Enemy_Damage = 10
+const  Attack_Range = 1
 @onready var ai = true
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @export var SPEED = 4.0
@@ -12,6 +14,7 @@ extends CharacterBody3D
 @onready var EnemyBody = $EnemyBody
 @onready var Sword = $Right_Arm/Sword
 @onready var Hitbox = $Area3D
+@onready var anim_player = $AnimationPlayer
 
 var enemy_health = 100
 
@@ -25,6 +28,7 @@ func actor_setup():
 	nav_agent.target_position = player.position
 
 func _physics_process(_delta: float) -> void:
+	anim_player.play("Enemy Attacks/simple attack", _target_in_range())
 	if ai:
 		if NavigationServer3D.map_get_iteration_id(nav_agent.get_navigation_map()) == 0:
 			return
@@ -68,9 +72,8 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 			DamageRegister.set_deferred("disabled", true)
 			SwordCollison.set_deferred("disabled", true)
 			Hitbox.set_deferred("monitoring", false)
-			#BodyCollison.disabled = true
-			#DamageRegister.disabled = true
-			#SwordCollison.disabled = true
-			#Hitbox.monitoring = false
 			#$StaticBody3D.collision_layer = 0
 			#$StaticBody3D.collision_mask = 0
+
+func _target_in_range():
+	return global_position.distance_to(velocity) < Attack_Range

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dft7wol7r165i"]
+[gd_scene load_steps=12 format=3 uid="uid://dft7wol7r165i"]
 
 [ext_resource type="Script" path="res://scripts/basic_sword_enemy.gd" id="1_s758i"]
 
@@ -17,6 +17,72 @@ size = Vector3(0.1, 1.75, 0.1)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8ugw7"]
 points = PackedVector3Array(0.0631466, 0.882543, 0.0631466, -0.0575431, -0.882543, -0.0575431, -0.0575431, -0.882543, 0.0631466, -0.0575431, 0.882543, -0.0575431, 0.0631466, -0.882543, -0.0575431, 0.0631466, -0.882543, 0.0631466, -0.0575431, 0.882543, 0.0631466, 0.0631466, 0.882543, -0.0575431)
+
+[sub_resource type="Animation" id="Animation_2fk5r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Right_Arm/Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.597335, 1.01587, -0.424653)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Right_Arm/Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7io7a"]
+_data = {
+"RESET": SubResource("Animation_2fk5r")
+}
+
+[sub_resource type="Animation" id="Animation_iktv8"]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Right_Arm/Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.233333, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.597335, 1.01587, -0.424653), Vector3(0.597335, 1.01587, -0.744874), Vector3(0.574899, 1.01587, -0.72163), Vector3(0.574899, 1.01587, -0.72163), Vector3(0.574899, 0.782652, -0.834869)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Right_Arm/Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.233333, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.181332, 0.195357, 0.11604), Vector3(-0.291756, 0.172404, 0.194555), Vector3(-0.608215, 0.201566, 0.128364), Vector3(-1.31764, 0.715516, -0.454918)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pv8xj"]
+_data = {
+"simple attack": SubResource("Animation_iktv8")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7mteq"]
 
 [node name="Basic_Sword_Enemy" type="CharacterBody3D" groups=["enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -55,6 +121,11 @@ wait_time = 0.1
 autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7io7a"),
+"Enemy Attacks": SubResource("AnimationLibrary_pv8xj"),
+"Enemy Movements": SubResource("AnimationLibrary_7mteq")
+}
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]

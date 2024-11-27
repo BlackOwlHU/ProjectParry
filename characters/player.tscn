@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b3dk3ja2yq7u3"]
+[gd_scene load_steps=12 format=3 uid="uid://b3dk3ja2yq7u3"]
 
 [ext_resource type="Script" path="res://characters/player.gd" id="1_ndm3o"]
 
@@ -137,11 +137,40 @@ tracks/2/keys = {
 "values": [Vector3(0.567922, -0.276739, -0.428297), Vector3(0.567922, -0.333577, -0.428297)]
 }
 
+[sub_resource type="Animation" id="Animation_pmpcu"]
+resource_name = "block"
+length = 0.3333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraController/Camera3D/Right_Arm/Weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.266667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.567922, -0.276739, -0.428297), Vector3(0.482541, -0.276739, -0.428297), Vector3(0.308354, -0.191545, -0.428297), Vector3(0.40082, -0.191545, -0.576895), Vector3(0.40082, -0.191545, -0.576895)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraController/Camera3D/Right_Arm/Weapon:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.266667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.28695, 0.335323, -0.0587942), Vector3(-0.278295, 0.224927, 0.452524), Vector3(-0.0988559, -0.0275455, 1.34656), Vector3(-0.0988559, -0.210718, 1.34656), Vector3(-0.0988559, -0.210718, 1.34656)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_in0ph"]
 _data = {
 "RESET": SubResource("Animation_d38bc"),
 "attack": SubResource("Animation_ubxbd"),
-"idle": SubResource("Animation_k08vk")
+"idle": SubResource("Animation_k08vk"),
+"parry": SubResource("Animation_pmpcu")
 }
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER") groups=["Player"]]
@@ -168,7 +197,7 @@ update_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3)
 
 [node name="Weapon" type="MeshInstance3D" parent="CameraController/Camera3D/Right_Arm"]
-transform = Transform3D(0.0948145, -0.0374887, 0.0315619, -0.00563577, 0.957454, 0.0283028, -0.0312801, -0.286139, 0.0905693, 0.567922, -0.276739, -0.428297)
+transform = Transform3D(0.0948145, -0.0374887, 0.0315619, -0.00563577, 0.957454, 0.0283028, -0.0312801, -0.286139, 0.0905694, 0.567922, -0.276739, -0.428297)
 mesh = SubResource("BoxMesh_0ntqj")
 
 [node name="Hitbox" type="Area3D" parent="CameraController/Camera3D/Right_Arm/Weapon"]
