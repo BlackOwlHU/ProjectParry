@@ -2,7 +2,7 @@ extends CharacterBody3D
 class_name Player
 
 @export var SPEED = 5.0
-@export var JUMP_VELOCITY = 4.5
+@export var JUMP_VELOCITY = 6
 @export var MOUSE_SENSITIVITY : float = 0.5
 @export var TILT_LOWER_LIMIT := deg_to_rad(-90.0)
 @export var TILT_UPPER_LIMIT := deg_to_rad(90.0)
