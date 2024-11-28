@@ -1,7 +1,6 @@
 extends CharacterBody3D
 #hours i have spend to fix this: 11
 @export var Enemy_Damage = 10
-const  Attack_Range = 1
 @onready var ai = true
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @export var SPEED = 4.0
@@ -15,20 +14,20 @@ const  Attack_Range = 1
 @onready var Sword = $Right_Arm/Sword
 @onready var Hitbox = $Area3D
 @onready var anim_player = $AnimationPlayer
+@onready var AttackRange = $AttackRange
 
 var enemy_health = 100
 
 func _ready():
-	pass
+	anim_player.play("RESET")
 	#nav_agent.path_changed.connect(func():print("path changed"))
-	call_deferred("actor_setup")
-
-func actor_setup():
-	await  get_tree().physics_frame
-	nav_agent.target_position = player.position
+	#call_deferred("actor_setup")
+#
+#func actor_setup():
+	#await  get_tree().physics_frame
+	#nav_agent.target_position = player.position
 
 func _physics_process(_delta: float) -> void:
-	anim_player.play("Enemy Attacks/simple attack", _target_in_range())
 	if ai:
 		if NavigationServer3D.map_get_iteration_id(nav_agent.get_navigation_map()) == 0:
 			return
@@ -58,10 +57,10 @@ func _on_navigation_agent_3d_target_reached() -> void:
 	print("reached")
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
-	if enemy_health > 0:
-		print("enemy_health:")
-		print(enemy_health)
 	if area.owner is Player:
+		if enemy_health > 0:
+			print("enemy_health:")
+			print(enemy_health)
 		enemy_health -= global.player_damage
 		if enemy_health <= 0:
 			ai = false
@@ -75,5 +74,11 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 			#$StaticBody3D.collision_layer = 0
 			#$StaticBody3D.collision_mask = 0
 
-func _target_in_range():
-	return global_position.distance_to(velocity) < Attack_Range
+
+func _on_attack_range_body_entered(body: Node3D) -> void:
+	if body.is_in_group('Player'):
+		anim_player.play("Enemy Attacks/simple attack")
+
+func _on_attack_range_body_exited(body: Node3D) -> void:
+		if body.is_in_group('Player'):
+			anim_player.play("RESET")

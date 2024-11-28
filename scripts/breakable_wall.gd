@@ -12,16 +12,15 @@ func _process(_delta: float) -> void:
 
 
 func _on_area_entered(area: Area3D) -> void:
-	if wall_health > 0:
-		print("wall_health:")
-		print(wall_health)
 	if area.owner is Player:
-		wall_health -= global.player_damage
-		if wall_health <= 0:
-			print("wall_breaked")
-			$MeshInstance3D.visible = false
-			
-			$CollisionShape3D2.set_deferred("disabled", true)
-			$StaticBody3D/CollisionShape3D.set_deferred("disabled", true)
-			$StaticBody3D.collision_layer = 0
-			$StaticBody3D.collision_mask = 0
+		if wall_health > 0:
+			print("wall_health:")
+			print(wall_health)
+			wall_health -= global.player_damage
+			if wall_health <= 0:
+				print("wall_breaked")
+				$MeshInstance3D.visible = false
+				$CollisionShape3D2.set_deferred("disabled", true)
+				$StaticBody3D/CollisionShape3D.set_deferred("disabled", true)
+				$StaticBody3D.collision_layer = 0
+				$StaticBody3D.collision_mask = 0

@@ -197,7 +197,7 @@ update_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3)
 
 [node name="Weapon" type="MeshInstance3D" parent="CameraController/Camera3D/Right_Arm"]
-transform = Transform3D(0.0948145, -0.0374887, 0.0315619, -0.00563577, 0.957454, 0.0283028, -0.0312801, -0.286139, 0.0905694, 0.567922, -0.276739, -0.428297)
+transform = Transform3D(0.0948145, -0.0374887, 0.0315619, -0.00563577, 0.957454, 0.0283029, -0.0312801, -0.286139, 0.0905694, 0.567922, -0.276739, -0.428297)
 mesh = SubResource("BoxMesh_0ntqj")
 
 [node name="Hitbox" type="Area3D" parent="CameraController/Camera3D/Right_Arm/Weapon"]

@@ -1,8 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dft7wol7r165i"]
+[gd_scene load_steps=13 format=3 uid="uid://dft7wol7r165i"]
 
 [ext_resource type="Script" path="res://scripts/basic_sword_enemy.gd" id="1_s758i"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ulxrb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cgwlm"]
+size = Vector3(1.6275, 1.84375, 2.89502)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f2d5s"]
 albedo_color = Color(1, 0.151344, 0.108333, 1)
@@ -94,6 +97,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 [node name="BodyCollison" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ulxrb")
 
+[node name="AttackRange" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackRange"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0271912, 0.421875, -0.94751)
+shape = SubResource("BoxShape3D_cgwlm")
+
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="DamageRegister" type="CollisionShape3D" parent="Area3D"]
@@ -127,6 +136,8 @@ libraries = {
 "Enemy Movements": SubResource("AnimationLibrary_7mteq")
 }
 
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
