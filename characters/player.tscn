@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://b3dk3ja2yq7u3"]
+[gd_scene load_steps=13 format=3 uid="uid://b3dk3ja2yq7u3"]
 
 [ext_resource type="Script" path="res://characters/player.gd" id="1_ndm3o"]
+[ext_resource type="PackedScene" uid="uid://4llbeqvxmkph" path="res://scenes/hud.tscn" id="2_n6eh5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lu5c3"]
 
@@ -216,6 +217,9 @@ libraries = {
 autoplay = "idle"
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 1.5
+one_shot = true
+
+[node name="HUD" parent="." instance=ExtResource("2_n6eh5")]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
