@@ -2,12 +2,15 @@ extends CharacterBody3D
 class_name Player
 
 @export var SPEED = 5.0
+@export var player_health = 100
+@export var player_stamina = 100
 @export var JUMP_VELOCITY = 6
 @export var MOUSE_SENSITIVITY : float = 0.5
 @export var TILT_LOWER_LIMIT := deg_to_rad(-90.0)
 @export var TILT_UPPER_LIMIT := deg_to_rad(90.0)
 @export var CAMERA_CONTROLLER : Camera3D
 @onready var player_damage = 50
+@onready var timer = $Timer
 
 @onready var anim_player = $AnimationPlayer
 @onready var weapon_hitbox = $CameraController/Camera3D/Right_Arm/Weapon/Hitbox
@@ -31,6 +34,9 @@ func _input(event):
 		get_tree().quit()
 	
 	if Input.is_action_just_pressed("Attack"):
+		if player_stamina == 0:
+			return
+		player_stamina -= 25
 		anim_player.play("attack")
 		weapon_hitbox.monitoring = true
 		hitbox_collision.disabled = false
@@ -69,8 +75,16 @@ func _update_camera(delta):
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	anim_player.play("idle")
+	get_tree().call_group("hud", "stamina_update", player_stamina)
+	get_tree().call_group("hud", "health_update", player_health)
 
 func _physics_process(delta: float) -> void:
+	if player_stamina < 100:
+		timer.start()
+		if timer.is_stopped():
+			while player_stamina < 100:
+				player_stamina += 5
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta

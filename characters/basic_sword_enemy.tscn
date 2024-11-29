@@ -62,10 +62,10 @@ tracks/0/path = NodePath("Right_Arm/Sword:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.233333, 0.4, 0.5),
+"times": PackedFloat32Array(0, 0.133333, 0.233333, 0.333333, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0.597335, 1.01587, -0.424653), Vector3(0.597335, 1.01587, -0.744874), Vector3(0.574899, 1.01587, -0.72163), Vector3(0.574899, 1.01587, -0.72163), Vector3(0.574899, 0.782652, -0.834869)]
+"values": [Vector3(0.597335, 1.01587, -0.424653), Vector3(0.842885, 0.468448, -0.683417), Vector3(0.717349, 0.468448, -0.916094), Vector3(0.355998, 0.32701, -0.916094), Vector3(-0.58034, 0.32701, -0.916094)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -74,10 +74,10 @@ tracks/1/path = NodePath("Right_Arm/Sword:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.233333, 0.4, 0.5),
+"times": PackedFloat32Array(0, 0.133333, 0.233333, 0.333333, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.181332, 0.195357, 0.11604), Vector3(-0.291756, 0.172404, 0.194555), Vector3(-0.608215, 0.201566, 0.128364), Vector3(-1.31764, 0.715516, -0.454918)]
+"values": [Vector3(0, 0, 0), Vector3(0.0279883, 0.153043, -0.736338), Vector3(0.0829281, 0.631331, -1.11546), Vector3(0.0710313, 1.52161, -1.43778), Vector3(0.0710313, 2.13459, -1.43778)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pv8xj"]

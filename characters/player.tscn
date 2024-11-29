@@ -215,4 +215,7 @@ libraries = {
 }
 autoplay = "idle"
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
