@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b3dk3ja2yq7u3"]
+[gd_scene load_steps=14 format=3 uid="uid://b3dk3ja2yq7u3"]
 
 [ext_resource type="Script" path="res://characters/player.gd" id="1_ndm3o"]
 [ext_resource type="PackedScene" uid="uid://4llbeqvxmkph" path="res://scenes/hud.tscn" id="2_n6eh5"]
@@ -11,6 +11,10 @@ roughness = 0.36
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_kx678"]
 material = SubResource("StandardMaterial3D_th864")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k5igd"]
+radius = 0.4
+height = 1.8
 
 [sub_resource type="BoxMesh" id="BoxMesh_0ntqj"]
 size = Vector3(1, 1.3, 1)
@@ -185,6 +189,12 @@ shape = SubResource("CapsuleShape3D_lu5c3")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
 mesh = SubResource("CapsuleMesh_kx678")
 skeleton = NodePath("../..")
+
+[node name="PlayerHitbox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08649, 0)
+shape = SubResource("CapsuleShape3D_k5igd")
 
 [node name="CameraController" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)

@@ -1,11 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://dft7wol7r165i"]
+[gd_scene load_steps=15 format=3 uid="uid://dft7wol7r165i"]
 
 [ext_resource type="Script" path="res://scripts/basic_sword_enemy.gd" id="1_s758i"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ulxrb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cgwlm"]
-size = Vector3(1.6275, 1.84375, 2.89502)
+size = Vector3(1.80338, 1.84375, 2.33765)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f2d5s"]
 albedo_color = Color(1, 0.151344, 0.108333, 1)
@@ -85,7 +85,41 @@ _data = {
 "simple attack": SubResource("Animation_iktv8")
 }
 
+[sub_resource type="Animation" id="Animation_l0lfs"]
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Right_Arm/Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.597335, 1.01587, -0.424653), Vector3(0.597335, 1.01587, -0.45719), Vector3(0.597335, 1.01587, -0.404258), Vector3(0.597335, 1.04914, -0.414456), Vector3(0.597335, 1.01587, -0.424653)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Right_Arm/Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.108874, 0, 0), Vector3(-0.0149342, 0, 0), Vector3(-0.0888344, 0, 0), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7mteq"]
+_data = {
+"idle": SubResource("Animation_l0lfs")
+}
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_oxujm"]
+states/Start/position = Vector2(565, 100)
 
 [node name="Basic_Sword_Enemy" type="CharacterBody3D" groups=["enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -100,7 +134,7 @@ shape = SubResource("CapsuleShape3D_ulxrb")
 [node name="AttackRange" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackRange"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0271912, 0.421875, -0.94751)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0829816, 0.421875, -0.668823)
 shape = SubResource("BoxShape3D_cgwlm")
 
 [node name="Area3D" type="Area3D" parent="."]
@@ -117,9 +151,10 @@ mesh = SubResource("CapsuleMesh_7d5yk")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.597335, 1.01587, -0.424653)
 mesh = SubResource("BoxMesh_aafqo")
 
-[node name="Area3D" type="Area3D" parent="Right_Arm/Sword"]
+[node name="SwordArea" type="Area3D" parent="Right_Arm/Sword"]
+monitorable = false
 
-[node name="SwordCollison" type="CollisionShape3D" parent="Right_Arm/Sword/Area3D"]
+[node name="SwordCollison" type="CollisionShape3D" parent="Right_Arm/Sword/SwordArea"]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_8ugw7")
 
@@ -136,8 +171,19 @@ libraries = {
 "Enemy Movements": SubResource("AnimationLibrary_7mteq")
 }
 
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_oxujm")
+
+[node name="BetweenAttacks" type="Timer" parent="."]
+process_callback = 0
+wait_time = 2.0
+autostart = true
+
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_entered" from="Right_Arm/Sword/SwordArea" to="." method="_on_sword_area_area_entered"]
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="BetweenAttacks" to="." method="_on_between_attacks_timeout"]

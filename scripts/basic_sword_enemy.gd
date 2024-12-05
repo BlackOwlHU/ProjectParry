@@ -9,17 +9,19 @@ extends CharacterBody3D
 @onready var pos = $Position
 @onready var BodyCollison = $BodyCollison
 @onready var DamageRegister = $Area3D/DamageRegister
-@onready var SwordCollison = $Right_Arm/Sword/Area3D/SwordCollison
+@onready var SwordCollison = $Right_Arm/Sword/SwordArea/SwordCollison
 @onready var EnemyBody = $EnemyBody
 @onready var Sword = $Right_Arm/Sword
 @onready var Hitbox = $Area3D
 @onready var anim_player = $AnimationPlayer
 @onready var AttackRange = $AttackRange
+@onready var BetweenAttacks = $BetweenAttacks
 
-var enemy_health = 100
+var is_enemy_in_range : bool = false
+@export var enemy_health = 100
 
 func _ready():
-	anim_player.play("RESET")
+	anim_player.play("Enemy Movements/idle")
 	#nav_agent.path_changed.connect(func():print("path changed"))
 	#call_deferred("actor_setup")
 #
@@ -76,9 +78,25 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 
 
 func _on_attack_range_body_entered(body: Node3D) -> void:
-	if body.is_in_group('Player'):
-		anim_player.play("Enemy Attacks/simple attack")
+	if body.is_in_group("Player"):
+		is_enemy_in_range = true
 
 func _on_attack_range_body_exited(body: Node3D) -> void:
-		if body.is_in_group('Player'):
-			anim_player.play("RESET")
+	if body.is_in_group("Player"):
+		is_enemy_in_range = false
+
+func _on_between_attacks_timeout() -> void:
+	$Right_Arm/Sword/SwordArea.set_deferred("monitorable", true)
+	SwordCollison.set_deferred("disabled", false)
+	if is_enemy_in_range:
+		anim_player.play("Enemy Attacks/simple attack")
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "Enemy Attacks/simple attack":
+		anim_player.play("Enemy Movements/idle")
+
+func _on_sword_area_area_entered(area: Area3D) -> void:
+	if area.owner is Player:
+		get_tree().call_group("Player", "get_damage", Enemy_Damage)
+		SwordCollison.set_deferred("disabled", true)
+		$Right_Arm/Sword/SwordArea.set_deferred("monitorable", false)

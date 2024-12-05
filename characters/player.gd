@@ -4,9 +4,10 @@ class_name Player
 @export var SPEED = 5.0
 @export var player_health = 100
 @export var player_stamina = 100
-var ready_to_run = true
+var ready_to_run : bool = true
 @export var stamina_max = 100
 var stamina_current = player_stamina
+var got_hit : bool = false
 @export var JUMP_VELOCITY = 6
 @export var MOUSE_SENSITIVITY : float = 0.5
 @export var TILT_LOWER_LIMIT := deg_to_rad(-90.0)
@@ -27,13 +28,7 @@ var _tilt_input : float
 var _player_rotation : Vector3
 var _camera_rotation : Vector3
 
-func _input(event):
-	if Input.is_action_pressed("Sprint"):
-		SPEED = 10
-	
-	if Input.is_action_just_released("Sprint"):
-		SPEED = 5.0
-	
+func _input(event):		
 	if event.is_action_pressed("Exit"):
 		get_tree().quit()
 	
@@ -83,19 +78,23 @@ func _ready():
 	anim_player.play("idle")
 
 func _physics_process(delta: float) -> void:
+	if player_health <= 0:
+		get_tree().reload_current_scene()
 	hud.health_update(player_health)
 	hud.stamina_update(stamina_current)
 	
-	if Input.is_action_pressed("Sprint") and stamina_current > 0 and ready_to_run:
+	if Input.is_action_pressed("Sprint") and stamina_current > 0 and ready_to_run and is_on_floor():
 		stamina_current -= 1
 		timer.start()
 		SPEED = 10
-	elif !Input.is_action_pressed("Sprint") and stamina_current < player_stamina and  timer.is_stopped():
-		stamina_current += 1
+	elif !Input.is_action_pressed("Sprint") and !Input.is_action_just_pressed("ui_accept") and !Input.is_action_just_pressed("Attack") and stamina_current < player_stamina and  timer.is_stopped():
+		stamina_current += 0.75
 		if stamina_current > player_stamina:
 			stamina_current = player_stamina
 		if stamina_current == player_stamina:
 			ready_to_run = true
+	elif stamina_current > 0:
+		ready_to_run = true
 	elif stamina_current <= 0:
 		ready_to_run = false
 	if Input.is_action_just_released("Sprint") or stamina_current <= 0:
@@ -108,7 +107,7 @@ func _physics_process(delta: float) -> void:
 	_update_camera(delta)
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and stamina_current >= 10:
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and stamina_current >= 10 and !Input.is_action_just_pressed("Sprint"):
 		stamina_current -= 10
 		timer.start()
 		velocity.y = JUMP_VELOCITY
@@ -135,3 +134,6 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		anim_player.play("idle")
 		weapon_hitbox.monitoring = false
 		hitbox_collision.disabled = true
+
+func get_damage(damage):
+	player_health -= damage
