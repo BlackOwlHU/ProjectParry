@@ -60,7 +60,7 @@ shadow_enabled = true
 [node name="Enemies" type="Node3D" parent="."]
 
 [node name="Basic_Sword_Enemy2" parent="Enemies" instance=ExtResource("3_bmqgp")]
-transform = Transform3D(-0.942671, 0, -0.333724, 0, 1, 0, 0.333724, 0, -0.942671, 3, 1, -13)
+transform = Transform3D(-0.942671, 0, -0.333724, 0, 1, 0, 0.333724, 0, -0.942671, 8.48312, 1, -26.5789)
 
 [node name="Basic_Sword_Enemy" parent="Enemies" instance=ExtResource("3_bmqgp")]
 transform = Transform3D(-0.499199, 0, -0.866488, 0, 1, 0, 0.866488, 0, -0.499199, -6, 1, -12)

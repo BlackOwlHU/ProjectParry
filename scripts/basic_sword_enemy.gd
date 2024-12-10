@@ -1,7 +1,7 @@
 extends CharacterBody3D
 #hours i have spend to fix this: 11
 @export var Enemy_Damage = 10
-@onready var ai = true
+var ai = true
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @export var SPEED = 4.0
 @onready var player = get_tree().get_first_node_in_group("Player")
@@ -30,6 +30,11 @@ func _ready():
 	#nav_agent.target_position = player.position
 
 func _physics_process(_delta: float) -> void:
+	if timer.wait_time == 4 and timer.is_stopped():
+			ai = true
+			timer.wait_time = 0.1
+			timer.start()
+
 	if ai:
 		if NavigationServer3D.map_get_iteration_id(nav_agent.get_navigation_map()) == 0:
 			return
@@ -42,8 +47,6 @@ func _physics_process(_delta: float) -> void:
 		#print(nav_agent.is_target_reachable())
 		var new_velocity =  (current_location.direction_to(next_location)) * SPEED
 		nav_agent.set_velocity(new_velocity)
-		velocity = nav_agent.velocity
-		move_and_slide()
 
 func update_target_location():
 	nav_agent.target_position = player.position
@@ -52,6 +55,7 @@ func update_target_location():
 func _on_timer_timeout() -> void:
 	#print("refresh")
 	if ai:
+		timer.wait_time = 0.1
 		update_target_location()
 		timer.start()
 
@@ -100,3 +104,14 @@ func _on_sword_area_area_entered(area: Area3D) -> void:
 		get_tree().call_group("Player", "get_damage", Enemy_Damage)
 		SwordCollison.set_deferred("disabled", true)
 		$Right_Arm/Sword/SwordArea.set_deferred("monitorable", false)
+
+func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
+	if ai:
+		velocity = velocity.move_toward(safe_velocity, .25)
+		move_and_slide()
+
+func get_stunned(parry_on):
+	timer.wait_time = 4
+	timer.start()
+	if parry_on:
+		ai = false

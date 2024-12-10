@@ -8,6 +8,7 @@ var ready_to_run : bool = true
 @export var stamina_max = 100
 var stamina_current = player_stamina
 var got_hit : bool = false
+var parry_on : bool = false
 @export var JUMP_VELOCITY = 6
 @export var MOUSE_SENSITIVITY : float = 0.5
 @export var TILT_LOWER_LIMIT := deg_to_rad(-90.0)
@@ -44,6 +45,7 @@ func _input(event):
 	
 	if Input.is_action_just_pressed("Parry-Block"):
 		anim_player.play("parry")
+		parry_on = true
 		weapon_hitbox.monitoring = true
 	
 	if Input.is_action_pressed("Pause"):
@@ -136,4 +138,9 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		hitbox_collision.disabled = true
 
 func get_damage(damage):
+	if parry_on:
+		stamina_current += 10
+		get_tree().call_group("enemy", "get_stunned", parry_on)
+		parry_on = false
+		return
 	player_health -= damage
