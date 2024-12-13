@@ -144,7 +144,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_pmpcu"]
 resource_name = "block"
-length = 0.3333
+length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -152,7 +152,7 @@ tracks/0/path = NodePath("CameraController/Camera3D/Right_Arm/Weapon:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.266667, 0.333333),
+"times": PackedFloat32Array(0, 0.033333, 0.114326, 0.180993, 0.247659),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0.567922, -0.276739, -0.428297), Vector3(0.482541, -0.276739, -0.428297), Vector3(0.308354, -0.191545, -0.428297), Vector3(0.40082, -0.191545, -0.576895), Vector3(0.40082, -0.191545, -0.576895)]
@@ -164,7 +164,7 @@ tracks/1/path = NodePath("CameraController/Camera3D/Right_Arm/Weapon:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.266667, 0.333333),
+"times": PackedFloat32Array(0, 0.033333, 0.114326, 0.180993, 0.247659),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(-0.28695, 0.335323, -0.0587942), Vector3(-0.278295, 0.224927, 0.452524), Vector3(-0.0988559, -0.0275455, 1.34656), Vector3(-0.0988559, -0.210718, 1.34656), Vector3(-0.0988559, -0.210718, 1.34656)]

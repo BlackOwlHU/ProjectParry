@@ -133,6 +133,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		weapon_hitbox.monitoring = false
 		hitbox_collision.disabled = true
 	if anim_name == "parry":
+		parry_on = false
 		anim_player.play("idle")
 		weapon_hitbox.monitoring = false
 		hitbox_collision.disabled = true
@@ -141,6 +142,5 @@ func get_damage(damage):
 	if parry_on:
 		stamina_current += 10
 		get_tree().call_group("enemy", "get_stunned", parry_on)
-		parry_on = false
 		return
 	player_health -= damage
