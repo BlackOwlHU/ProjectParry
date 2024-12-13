@@ -32,13 +32,6 @@ func _ready():
 	#nav_agent.target_position = player.position
 
 func _physics_process(_delta: float) -> void:
-	if timer.wait_time == 4 and timer.is_stopped():
-			ai = true
-			is_attack_on = false
-			timer.wait_time = 0.1
-			timer.autostart = true
-			timer.start()
-
 	if ai:
 		if NavigationServer3D.map_get_iteration_id(nav_agent.get_navigation_map()) == 0:
 			return
@@ -104,6 +97,13 @@ func _on_between_attacks_timeout() -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Enemy Attacks/simple attack":
 		anim_player.play("Enemy Movements/idle")
+	if anim_name == "Enemy Movements/Stunned" and enemy_health > 0:
+		anim_player.play("Enemy Movements/idle")
+		ai = true
+		is_attack_on = false
+		timer.wait_time = 0.1
+		timer.autostart = true
+		timer.start()
 
 func _on_sword_area_area_entered(area: Area3D) -> void:
 	if area.owner is Player:
