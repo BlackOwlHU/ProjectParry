@@ -11,9 +11,9 @@ var dead : bool = false
 @onready var pos = $Position
 @onready var BodyCollison = $BodyCollison
 @onready var DamageRegister = $Area3D/DamageRegister
-@onready var SwordCollison = $hand_right/Sword/SwordArea/SwordCollison
+@onready var SwordCollison = $Scaler/hand_right/Sword/SwordArea/SwordCollison
 @onready var EnemyBody = $EnemyBody
-@onready var Sword = $hand_right/Sword
+@onready var Sword = $Scaler/hand_right/Sword
 @onready var Hitbox = $Area3D
 @onready var anim_player = $AnimationPlayer
 @onready var AttackRange = $AttackRange
@@ -26,7 +26,7 @@ var is_enemy_in_range : bool = false
 
 func _ready():
 	enemy_bar.values(enemy_health, enemy_stamina)
-	anim_player.play("Enemy Movements/idle")
+	anim_player.play("Enemy Movements/Idle_test")
 	_on_timer_timeout()
 	#nav_agent.path_changed.connect(func():print("path changed"))
 	#call_deferred("actor_setup")
@@ -81,7 +81,6 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 			dead = true
 			ai = false
 			print("enemy_killed")
-			EnemyBody.visible = false
 			Sword.visible = false
 			BodyCollison.set_deferred("disabled", true)
 			DamageRegister.set_deferred("disabled", true)
@@ -100,7 +99,7 @@ func _on_attack_range_body_exited(body: Node3D) -> void:
 		is_enemy_in_range = false
 
 func _on_between_attacks_timeout() -> void:
-	$Right_Arm/Sword/SwordArea.set_deferred("monitorable", true)
+	$Scaler/hand_right/Sword/SwordArea.set_deferred("monitorable", true)
 	SwordCollison.set_deferred("disabled", false)
 	if is_enemy_in_range and ai and dead == false:
 		anim_player.play("Enemy Attacks/simple attack")
@@ -109,7 +108,7 @@ func _on_between_attacks_timeout() -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Enemy Attacks/simple attack":
 		anim_player.play("Enemy Movements/idle")
-		$Right_Arm/Sword/SwordArea.set_deferred("monitorable", false)
+		$Scaler/hand_right/Sword/SwordArea.set_deferred("monitorable", false)
 	if anim_name == "Enemy Movements/Stunned" and enemy_health > 0:
 		anim_player.play("Enemy Movements/idle")
 		ai = true
@@ -122,7 +121,7 @@ func _on_sword_area_area_entered(area: Area3D) -> void:
 	if area.owner is Player and dead == false and ai:
 		get_tree().call_group("Player", "get_damage", Enemy_Damage)
 		SwordCollison.set_deferred("disabled", true)
-		$Right_Arm/Sword/SwordArea.set_deferred("monitorable", false)
+		$Scaler/hand_right/Sword/SwordArea.set_deferred("monitorable", false)
 		is_attack_on = false
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
@@ -138,7 +137,7 @@ func get_stunned(parry_on):
 		timer.start()
 		ai = false
 		anim_player.play("Enemy Movements/Stunned")
-		$Right_Arm/Sword/SwordArea.set_deferred("monitorable", false)
+		$Scaler/hand_right/Sword/SwordArea.set_deferred("monitorable", false)
 		SwordCollison.set_deferred("disabled", true)
 
 func is_dead():
