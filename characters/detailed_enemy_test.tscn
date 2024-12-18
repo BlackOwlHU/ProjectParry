@@ -1,0 +1,442 @@
+[gd_scene load_steps=29 format=3 uid="uid://dhthn66o84vie"]
+
+[ext_resource type="Script" path="res://scripts/detailed_enemy_test.gd" id="1_pmrnb"]
+[ext_resource type="PackedScene" uid="uid://chc7qe2j16ic" path="res://scenes/enemy_bar.tscn" id="2_04223"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_lugdp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_aafqo"]
+size = Vector3(0.1, 1.75, 0.1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8ugw7"]
+points = PackedVector3Array(0.0631466, 0.882543, 0.0631466, -0.0575431, -0.882543, -0.0575431, -0.0575431, -0.882543, 0.0631466, -0.0575431, 0.882543, -0.0575431, 0.0631466, -0.882543, -0.0575431, 0.0631466, -0.882543, 0.0631466, -0.0575431, 0.882543, 0.0631466, 0.0631466, 0.882543, -0.0575431)
+
+[sub_resource type="SphereMesh" id="SphereMesh_peqfx"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qlw43"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_11yqv"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_th6xj"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wglm2"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8w1pa"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_d31ll"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5m1j5"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_18bar"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_a1j7b"]
+size = Vector3(1, 1.5, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ulxrb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cgwlm"]
+size = Vector3(1.80338, 1.84375, 2.33765)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f2d5s"]
+albedo_color = Color(1, 0.151344, 0.108333, 1)
+metallic = 0.05
+roughness = 0.5
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7d5yk"]
+material = SubResource("StandardMaterial3D_f2d5s")
+
+[sub_resource type="Animation" id="Animation_2fk5r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hand_right/Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.597335, 1.01587, -0.424653)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hand_right/Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EnemyBody:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EnemyBody:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7io7a"]
+_data = {
+"RESET": SubResource("Animation_2fk5r")
+}
+
+[sub_resource type="Animation" id="Animation_iktv8"]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hand_right/Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.233333, 0.333333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.597335, 1.01587, -0.424653), Vector3(0.842885, 0.468448, -0.683417), Vector3(0.717349, 0.468448, -0.916094), Vector3(0.355998, 0.32701, -0.916094), Vector3(-0.58034, 0.32701, -0.916094)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hand_right/Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.233333, 0.333333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.0279883, 0.153043, -0.736338), Vector3(0.0829281, 0.631331, -1.11546), Vector3(0.0710313, 1.52161, -1.43778), Vector3(0.0710313, 2.13459, -1.43778)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EnemyBody:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EnemyBody:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pv8xj"]
+_data = {
+"simple attack": SubResource("Animation_iktv8")
+}
+
+[sub_resource type="Animation" id="Animation_fdevd"]
+resource_name = "Stunned"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hand_right/Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.597335, 1.01587, -0.424653), Vector3(0.597335, 1.01587, -0.508693), Vector3(0.597335, 1.01587, -0.569796), Vector3(0.597335, -0.0854303, -0.669254)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hand_right/Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.659385, 0, 0), Vector3(-1.98699, 0, 0), Vector3(-2.88089, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EnemyBody:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EnemyBody:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.223193, 0, 0), Vector3(-0.822137, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_l0lfs"]
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hand_right/Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.597335, 1.01587, -0.424653), Vector3(0.597335, 1.01587, -0.45719), Vector3(0.597335, 1.01587, -0.404258), Vector3(0.597335, 1.04914, -0.414456), Vector3(0.597335, 1.01587, -0.424653)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hand_right/Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.108874, 0, 0), Vector3(-0.0149342, 0, 0), Vector3(-0.0888344, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EnemyBody:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EnemyBody:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7mteq"]
+_data = {
+"Stunned": SubResource("Animation_fdevd"),
+"idle": SubResource("Animation_l0lfs")
+}
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_oxujm"]
+states/Start/position = Vector2(565, 100)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qdrvu"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Basic_Sword_Enemy" type="CharacterBody3D" groups=["enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_pmrnb")
+
+[node name="hand_right" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.851395, 0.607204, -0.478933)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="hand_right"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+mesh = SubResource("SphereMesh_lugdp")
+
+[node name="Sword" type="MeshInstance3D" parent="hand_right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.597335, 1.01587, -0.424653)
+mesh = SubResource("BoxMesh_aafqo")
+skeleton = NodePath("")
+
+[node name="SwordArea" type="Area3D" parent="hand_right/Sword"]
+monitorable = false
+
+[node name="SwordCollison" type="CollisionShape3D" parent="hand_right/Sword/SwordArea"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_8ugw7")
+
+[node name="head" type="Node3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 3, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="head"]
+mesh = SubResource("SphereMesh_peqfx")
+
+[node name="neck" type="Node3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 2.45548, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="neck"]
+mesh = SubResource("CapsuleMesh_qlw43")
+
+[node name="arm_elbow_right" type="Node3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.373181, -0.107999, 0, 0.143999, 0.279886, -0.805, 1.049, -0.202)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="arm_elbow_right"]
+mesh = SubResource("CapsuleMesh_11yqv")
+
+[node name="arm_elbow_left" type="Node3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.373209, -0.107945, 0, 0.143927, 0.279907, 0.804932, 1.04941, -0.202057)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="arm_elbow_left"]
+mesh = SubResource("CapsuleMesh_th6xj")
+
+[node name="arm_shoulder_right" type="Node3D" parent="."]
+transform = Transform3D(0.273421, 0.164606, 0, -0.118672, 0.350439, -0.0826912, -0.0340286, 0.100487, 0.288379, -0.668, 1.684, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="arm_shoulder_right"]
+mesh = SubResource("CapsuleMesh_wglm2")
+
+[node name="arm_shoulder_left" type="Node3D" parent="."]
+transform = Transform3D(0.27333, -0.164873, -3.28541e-09, 0.118879, 0.350365, -0.0825704, 0.0340341, 0.100307, 0.288413, 0.668094, 1.68361, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="arm_shoulder_left"]
+mesh = SubResource("CapsuleMesh_8w1pa")
+
+[node name="body" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35901, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="body"]
+mesh = SubResource("CapsuleMesh_d31ll")
+
+[node name="leg_upper_right" type="Node3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.4, 0, 0, 0, 0.3, -0.428005, 0.225, -0.115)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="leg_upper_right"]
+mesh = SubResource("CapsuleMesh_5m1j5")
+
+[node name="leg_upper_left" type="Node3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.398764, -0.0235638, 0, 0.0314184, 0.299073, 0.40343, 0.224616, -0.114579)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="leg_upper_left"]
+mesh = SubResource("CapsuleMesh_5m1j5")
+
+[node name="leg_ankle_right" type="Node3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.4, 0, 0, 0, 0.3, -0.432649, -0.389, -0.087)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="leg_ankle_right"]
+mesh = SubResource("CapsuleMesh_18bar")
+
+[node name="leg_ankle_left" type="Node3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.4, 0, 0, 0, 0.3, 0.375711, -0.388616, -0.0667112)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="leg_ankle_left"]
+mesh = SubResource("CapsuleMesh_18bar")
+
+[node name="leg_boots_right" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.347993, -0.75, -0.196282)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="leg_boots_right"]
+transform = Transform3D(0.225, 0, 0, 0, -0.3, -4.52987e-08, 0, 4.52987e-08, -0.3, -0.0578153, 0.139895, -0.1)
+mesh = SubResource("BoxMesh_a1j7b")
+skeleton = NodePath("")
+
+[node name="leg_boots_left" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.417, -0.75, -0.140336)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="leg_boots_left"]
+transform = Transform3D(0.225, 0, 0, 0, -0.3, -4.52987e-08, 0, 4.52987e-08, -0.3, -0.0578153, 0.139895, -0.1)
+mesh = SubResource("BoxMesh_a1j7b")
+skeleton = NodePath("")
+
+[node name="Position" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="BodyCollison" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ulxrb")
+
+[node name="AttackRange" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackRange"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0829816, 0.421875, -0.668823)
+shape = SubResource("BoxShape3D_cgwlm")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="DamageRegister" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_ulxrb")
+
+[node name="EnemyBody" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_7d5yk")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+target_desired_distance = 1.5
+avoidance_enabled = true
+radius = 1.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7io7a"),
+"Enemy Attacks": SubResource("AnimationLibrary_pv8xj"),
+"Enemy Movements": SubResource("AnimationLibrary_7mteq")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_oxujm")
+
+[node name="BetweenAttacks" type="Timer" parent="."]
+process_callback = 0
+wait_time = 2.0
+autostart = true
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+
+[node name="Enemy_Bar" parent="SubViewport" instance=ExtResource("2_04223")]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+texture = SubResource("ViewportTexture_qdrvu")
+
+[connection signal="area_entered" from="hand_right/Sword/SwordArea" to="." method="_on_sword_area_area_entered"]
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="BetweenAttacks" to="." method="_on_between_attacks_timeout"]
