@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://vl13os4i4fes"]
+[gd_scene load_steps=17 format=3 uid="uid://vl13os4i4fes"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_cf0ep"]
 [ext_resource type="Texture2D" uid="uid://7v8tpm7ultpq" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="1_qtw7p"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://dft7wol7r165i" path="res://characters/basic_sword_enemy.tscn" id="3_bmqgp"]
 [ext_resource type="Texture2D" uid="uid://cton2ssuho5cc" path="res://addons/kenney_prototype_textures/orange/texture_02.png" id="3_e6i4e"]
 [ext_resource type="PackedScene" uid="uid://cprghsxm60aor" path="res://scenes/breakable_wall.tscn" id="4_g32xw"]
-[ext_resource type="PackedScene" uid="uid://dhthn66o84vie" path="res://characters/detailed_enemy_test.tscn" id="7_xl73p"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_aocdx"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -108,6 +107,3 @@ shape = SubResource("ConcavePolygonShape3D_wdrkd")
 
 [node name="Breakable_Wall" parent="NavigationRegion3D/Enviroment" instance=ExtResource("4_g32xw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.900523, 0, -3.18971)
-
-[node name="Basic_Sword_Enemy" parent="." instance=ExtResource("7_xl73p")]
-transform = Transform3D(0.678044, 0, -0.735021, 0, 1, 0, 0.735021, 0, 0.678044, 12.2458, 1, -15.8476)
