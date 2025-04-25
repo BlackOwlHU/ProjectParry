@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://b3dk3ja2yq7u3"]
 
-[ext_resource type="Script" path="res://characters/player.gd" id="1_ndm3o"]
+[ext_resource type="Script" uid="uid://brscmci0iogt1" path="res://characters/player.gd" id="1_ndm3o"]
 [ext_resource type="PackedScene" uid="uid://4llbeqvxmkph" path="res://scenes/hud.tscn" id="2_n6eh5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lu5c3"]
@@ -172,10 +172,10 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_in0ph"]
 _data = {
-"RESET": SubResource("Animation_d38bc"),
-"attack": SubResource("Animation_ubxbd"),
-"idle": SubResource("Animation_k08vk"),
-"parry": SubResource("Animation_pmpcu")
+&"RESET": SubResource("Animation_d38bc"),
+&"attack": SubResource("Animation_ubxbd"),
+&"idle": SubResource("Animation_k08vk"),
+&"parry": SubResource("Animation_pmpcu")
 }
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER") groups=["Player"]]
@@ -223,7 +223,7 @@ disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_in0ph")
+&"": SubResource("AnimationLibrary_in0ph")
 }
 autoplay = "idle"
 

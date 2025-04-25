@@ -86,7 +86,7 @@ func _physics_process(delta: float) -> void:
 	hud.stamina_update(stamina_current)
 	
 	if Input.is_action_pressed("Sprint") and stamina_current > 0 and ready_to_run and is_on_floor():
-		stamina_current -= 1
+		stamina_current -= 0.50
 		timer.start()
 		SPEED = 10
 	elif !Input.is_action_pressed("Sprint") and !Input.is_action_just_pressed("ui_accept") and !Input.is_action_just_pressed("Attack") and stamina_current < player_stamina and  timer.is_stopped():

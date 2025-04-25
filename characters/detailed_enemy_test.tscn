@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://dhthn66o84vie"]
 
-[ext_resource type="Script" path="res://scripts/detailed_enemy_test.gd" id="1_pmrnb"]
+[ext_resource type="Script" uid="uid://jtf5r2lq20wi" path="res://scripts/detailed_enemy_test.gd" id="1_pmrnb"]
 [ext_resource type="PackedScene" uid="uid://chc7qe2j16ic" path="res://scenes/enemy_bar.tscn" id="2_04223"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5m1j5"]
@@ -380,7 +380,7 @@ tracks/27/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7io7a"]
 _data = {
-"RESET": SubResource("Animation_2fk5r")
+&"RESET": SubResource("Animation_2fk5r")
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pv8xj"]
@@ -512,7 +512,7 @@ tracks/9/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7mteq"]
 _data = {
-"Idle_test": SubResource("Animation_uabj6")
+&"Idle_test": SubResource("Animation_uabj6")
 }
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_oxujm"]
@@ -657,9 +657,9 @@ autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_7io7a"),
-"Enemy Attacks": SubResource("AnimationLibrary_pv8xj"),
-"Enemy Movements": SubResource("AnimationLibrary_7mteq")
+&"": SubResource("AnimationLibrary_7io7a"),
+&"Enemy Attacks": SubResource("AnimationLibrary_pv8xj"),
+&"Enemy Movements": SubResource("AnimationLibrary_7mteq")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

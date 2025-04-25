@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://dft7wol7r165i"]
 
-[ext_resource type="Script" path="res://scripts/basic_sword_enemy.gd" id="1_s758i"]
+[ext_resource type="Script" uid="uid://d0dy4wx46r4hg" path="res://scripts/basic_sword_enemy.gd" id="1_s758i"]
 [ext_resource type="PackedScene" uid="uid://chc7qe2j16ic" path="res://scenes/enemy_bar.tscn" id="2_bb0v7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ulxrb"]
@@ -75,7 +75,7 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7io7a"]
 _data = {
-"RESET": SubResource("Animation_2fk5r")
+&"RESET": SubResource("Animation_2fk5r")
 }
 
 [sub_resource type="Animation" id="Animation_iktv8"]
@@ -131,7 +131,7 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pv8xj"]
 _data = {
-"simple attack": SubResource("Animation_iktv8")
+&"simple attack": SubResource("Animation_iktv8")
 }
 
 [sub_resource type="Animation" id="Animation_fdevd"]
@@ -240,8 +240,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7mteq"]
 _data = {
-"Stunned": SubResource("Animation_fdevd"),
-"idle": SubResource("Animation_l0lfs")
+&"Stunned": SubResource("Animation_fdevd"),
+&"idle": SubResource("Animation_l0lfs")
 }
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_oxujm"]
@@ -298,9 +298,9 @@ autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_7io7a"),
-"Enemy Attacks": SubResource("AnimationLibrary_pv8xj"),
-"Enemy Movements": SubResource("AnimationLibrary_7mteq")
+&"": SubResource("AnimationLibrary_7io7a"),
+&"Enemy Attacks": SubResource("AnimationLibrary_pv8xj"),
+&"Enemy Movements": SubResource("AnimationLibrary_7mteq")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

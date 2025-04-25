@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://vl13os4i4fes"]
 
-[ext_resource type="Script" path="res://scripts/world.gd" id="1_cf0ep"]
+[ext_resource type="Script" uid="uid://dh6ntp5mxrbne" path="res://scripts/world.gd" id="1_cf0ep"]
 [ext_resource type="Texture2D" uid="uid://7v8tpm7ultpq" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="1_qtw7p"]
 [ext_resource type="PackedScene" uid="uid://b3dk3ja2yq7u3" path="res://characters/player.tscn" id="2_p7vx7"]
 [ext_resource type="PackedScene" uid="uid://dft7wol7r165i" path="res://characters/basic_sword_enemy.tscn" id="3_bmqgp"]
